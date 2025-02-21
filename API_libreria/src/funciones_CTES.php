@@ -144,4 +144,36 @@ function obtener_libros()
     return $respuesta;
 }
 
+function obtenerLibro($datoLibros)
+{
+    try{
+        $conexion=new PDO("mysql:host=".SERVIDOR_BD.";dbname=".NOMBRE_BD,USUARIO_BD,CLAVE_BD,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+    }
+    catch(PDOException $e)
+    {
+        $respuesta["error"]="No he podido conectarse a la base de batos: ".$e->getMessage();
+        return $respuesta;
+    }
+
+    try{
+        $consulta="select * from libros where referencia=?";
+        $sentencia=$conexion->prepare($consulta);
+        $sentencia->execute([$datoLibros]);
+
+    }
+    catch(PDOException $e)
+    {
+        $sentencia=null;
+        $conexion=null;
+        $respuesta["error"]="No he podido realizarse la consulta: ".$e->getMessage();
+        return $respuesta;
+    }
+
+    $respuesta["libros"]=$sentencia->fetch(PDO::FETCH_ASSOC);
+        
+    $sentencia=null;
+    $conexion=null;
+    return $respuesta;
+}
+
 ?>
