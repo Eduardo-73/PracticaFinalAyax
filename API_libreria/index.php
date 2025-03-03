@@ -25,7 +25,6 @@ $app->post('/login', function ($request) {
     echo json_encode(login($datos_login));
 });
 
-
 $app->get('/obtenerLibros', function () {
 
     echo json_encode(obtener_libros());
@@ -159,3 +158,4 @@ $app->get('/obtenerLibro/{referencia}', function ($request) {
 });
 
 $app->run();
+
