@@ -95,7 +95,7 @@ $app->delete('/borrarLibro/{referencia}', function ($request) {
     } else
         echo json_encode(array("no_auth" => "No tienes permiso para usar el servicio"));
 });
-
+/*
 $app->put('/actualizarPortada/{referencia}', function ($request) {
 
     $test = validateToken();
@@ -136,7 +136,7 @@ $app->get('/repetido/{tabla}/{columna}/{valor}', function ($request) {
     } else
         echo json_encode(array("no_auth" => "No tienes permiso para usar el servicio"));
 });
-
+*/
 $app->get('/obtenerLibro/{referencia}', function ($request) {
 
     $test = validateToken();
